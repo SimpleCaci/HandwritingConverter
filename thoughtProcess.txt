@@ -1,0 +1,8 @@
+07.27.25 - 
+3 processes:
+ - Image -> Text (OCR?)
+ - Text -> Document Formatting
+ - Document -> Portable Printer (A seperate program?)
+
+ First thing:  - Image -> Text (OCR?)
+  - takes the photo from the Input folder then converts it to text
