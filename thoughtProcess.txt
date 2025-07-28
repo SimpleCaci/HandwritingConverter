@@ -5,4 +5,20 @@
  - Document -> Portable Printer (A seperate program?)
 
  First thing:  - Image -> Text (OCR?)
-  - takes the photo from the Input folder then converts it to text
+  - takes the photo from the Input folder then converts it to text 
+
+  I read through the documentations and essentially what I have to do is:
+    OpenCV:
+        take in the image, 
+        filters and process the image,
+
+    Pytessseract (the wrapper) with Tesseract OCR (exe)
+        then extract the handwriting from the image
+
+  OpenCV: Open Source Computer Vision Library
+    (usually in C++) -> currently using python as a wrapper
+    - can be utilized for face detection, OCR preprocessing etc
+
+    created virtual environment to not polute the global environment
+
+    I want to first make an MVP starting with jpg file to test it, knowing I can easily convert the files to jpg or implement further adaptation later.  then I will denoise it then process it however let me focus on getting the jpg file from disc first.
