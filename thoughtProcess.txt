@@ -22,3 +22,10 @@
     created virtual environment to not polute the global environment
 
     I want to first make an MVP starting with jpg file to test it, knowing I can easily convert the files to jpg or implement further adaptation later.  then I will denoise it then process it however let me focus on getting the jpg file from disc first.
+
+    the image extracted is giveen in np.ndarray format:
+        NumPy N-Dimensional Array
+        Grayscale	(height, width)	2D array, 1 value per pixel
+        Color (BGR)	(height, width, 3)	3D array, 3 values/pixel
+        for storing image values
+        like storing an image based on its positions and color values of each pixels
