@@ -29,3 +29,6 @@
         Color (BGR)	(height, width, 3)	3D array, 3 values/pixel
         for storing image values
         like storing an image based on its positions and color values of each pixels
+
+
+      To find the texts, I would need to figure out how to seperate the lines.
