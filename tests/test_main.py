@@ -17,19 +17,29 @@ def test_convert_images_uses_ocr_and_saves_debug_image(tmp_path, monkeypatch):
     make_image(source)
     captured = {}
 
-    def fake_ocr(image, lang, config):
-        captured.update(shape=image.shape, lang=lang, config=config)
-        return "Hello notes\n"
+    def fake_ocr(image, lang, config, output_type):
+        captured.update(
+            shape=image.shape,
+            lang=lang,
+            config=config,
+            output_type=output_type,
+        )
+        return {
+            "text": ["", "Hello", "notes"],
+            "conf": ["-1", "94", "86"],
+        }
 
-    monkeypatch.setattr(main.pytesseract, "image_to_string", fake_ocr)
+    monkeypatch.setattr(main.pytesseract, "image_to_data", fake_ocr)
     results = main.convert_images(
         [source], language="eng", page_segmentation=6, debug_dir=tmp_path / "debug"
     )
 
     assert results[0].text == "Hello notes"
+    assert results[0].confidence == 90
     assert results[0].processed_image.is_file()
     assert captured["lang"] == "eng"
     assert "--psm 6" in captured["config"]
+    assert captured["output_type"] == main.pytesseract.Output.DICT
 
 
 def test_writers_create_text_and_pdf(tmp_path):
@@ -47,6 +57,24 @@ def test_writers_create_text_and_pdf(tmp_path):
     assert text_path.read_text(encoding="utf-8").endswith("\n")
     assert pdf_path.read_bytes().startswith(b"%PDF")
     assert pdf_path.stat().st_size > 500
+
+
+def test_review_report_embeds_source_and_escapes_transcription(tmp_path):
+    source = tmp_path / "note.png"
+    make_image(source)
+    output = tmp_path / "review.html"
+
+    main.write_review_report(
+        [main.ConversionResult(source, "Math: 2 < 3", confidence=92)],
+        output,
+        "Class notes",
+    )
+
+    report = output.read_text(encoding="utf-8")
+    assert "data:image/png;base64," in report
+    assert "Math: 2 &lt; 3" in report
+    assert "Average OCR confidence 92%" in report
+    assert "<title>Class notes · OCR review</title>" in report
 
 
 def test_missing_input_is_reported(tmp_path):
