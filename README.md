@@ -12,6 +12,8 @@ I built this because writing by hand is often the fastest way for me to think, b
 - preserves the image order as PDF page order
 - resizes, denoises, increases contrast, and binarizes each page
 - runs local Tesseract OCR without uploading notes to a cloud service
+- calculates average word confidence for each page
+- writes a self-contained visual review report beside the transcription and PDF
 - writes a UTF-8 text transcription and a printable multipage PDF
 - supports alternate Tesseract languages and page-segmentation modes
 - can save processed images for recognition troubleshooting
@@ -40,6 +42,8 @@ resize -> denoise -> contrast enhancement -> adaptive threshold
         |
         v
 local Tesseract OCR
+        |
+        +----> source + OCR confidence review (HTML)
         |
         +----> UTF-8 transcription
         |
@@ -95,8 +99,11 @@ python main.py page-1.jpg page-2.jpg page-3.jpg --output output/class-notes --ti
 
 This creates:
 
+- `output/class-notes.html` — visual source/transcription review
 - `output/class-notes.txt`
 - `output/class-notes.pdf`
+
+Open the HTML report in any browser to compare every original page with the OCR result and average word confidence. The report is self-contained, so it can be moved without breaking its images. Use `--no-review-report` when only text and PDF output are needed.
 
 Save the processed images when tuning recognition:
 
@@ -114,7 +121,7 @@ ruff check main.py tests
 pytest -q
 ```
 
-The tests isolate OCR itself so they remain deterministic, while still exercising preprocessing, multipage result handling, text output, and real PDF creation.
+The tests isolate OCR itself so they remain deterministic, while still exercising preprocessing, confidence calculation, the self-contained review report, multipage result handling, text output, and real PDF creation.
 
 ## Privacy
 
