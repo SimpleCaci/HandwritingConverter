@@ -21,4 +21,4 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -r requirements-dev.txt
       - run: ruff check main.py tests
-      - run: pytest -q
+      - run: python -m pytest -q
