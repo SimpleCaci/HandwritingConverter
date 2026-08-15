@@ -83,7 +83,7 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-Install Tesseract through your system package manager—for example, `brew install tesseract` on macOS or `sudo apt install tesseract-ocr` on Debian/Ubuntu.
+Install Tesseract through your system package manager. For example, use `brew install tesseract` on macOS or `sudo apt install tesseract-ocr` on Debian/Ubuntu.
 
 ## Usage
 
@@ -101,7 +101,7 @@ python main.py page-1.jpg page-2.jpg page-3.jpg --output output/class-notes --ti
 
 This creates:
 
-- `output/class-notes.html` — visual source/transcription review
+- `output/class-notes.html`: visual source/transcription review
 - `output/class-notes.txt`
 - `output/class-notes.pdf`
 
