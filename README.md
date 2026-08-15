@@ -2,6 +2,8 @@
 
 Turn photos of handwritten notes into searchable text and a printable PDF.
 
+![HandwritingConverter before and after](docs/media/hero.png)
+
 I built this because writing by hand is often the fastest way for me to think, but paper notes are difficult to search, revise, and print with my portable printer. HandwritingConverter connects those two workflows without pretending that handwriting OCR is perfect.
 
 > **Status:** working beta. The full local conversion pipeline is implemented and covered by automated tests. Recognition quality still depends heavily on handwriting, lighting, camera angle, and the installed Tesseract language data.
@@ -21,7 +23,7 @@ I built this because writing by hand is often the fastest way for me to think, b
 
 ## Demo
 
-A real before/after screenshot is still needed. The repository includes sample images in `Input/` for local testing; they are not presented as accuracy benchmarks.
+The example above uses `Input/test.jpg` and a manually reviewed transcription. The sample images in `Input/` are provided for local testing, not as accuracy benchmarks.
 
 ## Technology
 
