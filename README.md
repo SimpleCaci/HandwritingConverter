@@ -2,6 +2,10 @@
 
 Turn photos of handwritten notes into searchable text and a printable PDF.
 
+[![Checks](https://github.com/SimpleCaci/HandwritingConverter/actions/workflows/validate.yml/badge.svg)](https://github.com/SimpleCaci/HandwritingConverter/actions/workflows/validate.yml)
+
+[Install](#installation) · [Convert notes](#usage) · [Contribute](CONTRIBUTING.md)
+
 ![HandwritingConverter before and after](docs/media/hero.png)
 
 I built this because writing by hand is often the fastest way for me to think, but paper notes are difficult to search, revise, and print with my portable printer. HandwritingConverter connects those two workflows without pretending that handwriting OCR is perfect.

@@ -7,9 +7,9 @@ import base64
 import html
 import mimetypes
 import shutil
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
 
 import cv2
 import pytesseract
@@ -285,7 +285,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("-o", "--output", type=Path, default=Path("output/handwriting"))
     parser.add_argument("--title", default="Handwriting transcription")
     parser.add_argument("--language", default="eng", help="Installed Tesseract language code")
-    parser.add_argument("--psm", type=int, default=6, choices=range(0, 14))
+    parser.add_argument("--psm", type=int, default=6, choices=range(14))
     parser.add_argument("--tesseract", help="Path to the Tesseract executable")
     parser.add_argument("--debug-images", action="store_true")
     parser.add_argument(
